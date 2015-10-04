@@ -1,0 +1,16 @@
+objects = fixedxor.o hexchartoint.o s1c2.o
+
+s1c2.out: $(objects)
+	gcc -o s1c2.out $(objects)
+
+s1c2.o: s1c2.c
+	gcc -c s1c2.c
+
+hexchartoint.o: hexchartoint.c
+	gcc -c hexchartoint.c
+
+fixedxor.o: fixedxor.c
+	gcc -c fixedxor.c
+
+clean:
+	rm s1c2.out hexchartoint.o s1c2.o fixedxor.o

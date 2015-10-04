@@ -1,0 +1,13 @@
+objects = s1c6.o hamming.o
+
+s1c6.out: $(objects)
+	gcc -o s1c6.out $(objects)
+
+s1c6.o: s1c6.c
+	gcc -c s1c6.c
+
+hamming.o: hamming.c
+	gcc -c hamming.c
+
+clean:
+	rm s1c6.out s1c6.o hamming.o

@@ -1,0 +1,16 @@
+objects = hextobase64.o hexchartoint.o s1c1.o
+
+s1c1.out: $(objects)
+	gcc -o s1c1.out $(objects)
+
+s1c1.o: s1c1.c
+	gcc -c s1c1.c
+
+hextobase64.o: hextobase64.c
+	gcc -c hextobase64.c
+
+hexchartoint.o: hexchartoint.c
+	gcc -c hexchartoint.c
+
+clean:
+	rm s1c1.out hextobase64.o hexchartoint.o s1c1.o

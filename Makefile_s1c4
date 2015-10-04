@@ -1,0 +1,16 @@
+objects = singlebytexorcipher.o s1c4.o hexchartoint.o
+
+s1c4.out: $(objects)
+	gcc -o s1c4.out $(objects)
+
+s1c4.o: s1c4.c
+	gcc -c s1c4.c
+
+hexchartoint.o: hexchartoint.c
+	gcc -c hexchartoint.c
+
+singlebytexorcipher.o: singlebytexorcipher.c
+	gcc -c singlebytexorcipher.c
+
+clean:
+	rm s1c4.out singlebytexorcipher.o s1c4.o hexchartoint.o

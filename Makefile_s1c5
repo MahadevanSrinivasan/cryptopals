@@ -1,0 +1,10 @@
+objects = s1c5.o 
+
+s1c5.out: $(objects)
+	gcc -o s1c5.out $(objects)
+
+s1c5.o: s1c5.c
+	gcc -c s1c5.c
+
+clean:
+	rm s1c5.out s1c5.o
