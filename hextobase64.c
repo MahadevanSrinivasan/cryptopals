@@ -3,7 +3,7 @@
 #include <string.h>
 #include "defs.h"
 
-char * hextobase64(char *input)
+char *hextobase64(char *input)
 {
   int i, j, k = 0;
   char map[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -20,7 +20,6 @@ char * hextobase64(char *input)
     {
       long temp = hexchartoint(input[i])*16 + hexchartoint(input[i+1]);
       temp = temp<<8 | (hexchartoint(input[i+2])*16 + hexchartoint(input[i+3]));
-
       temp = temp<<8 | (hexchartoint(input[i+4])*16 + hexchartoint(input[i+5]));
 
       for(j = 3; j >= 0; j--)

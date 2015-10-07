@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
   else
   {
     char *input = argv[1];
-    printf("%s\n",hextobase64(input));
+    rawtobase64(hextoraw(input));
   }
   return 0;
 }

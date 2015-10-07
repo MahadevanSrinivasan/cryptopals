@@ -1,23 +1,25 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include "defs.h"
 
 int main(int argc, char *argv[])
 {
 	if(argc == 2)
 	{
-		char *input = argv[1]; 
+		char *input = argv[1];
 		char *key = "ICE";
 		int i = 0, l = strlen(input), kl = strlen(key);
-		int k = 0;
+		int k = 0, j = 0;
+		char *rawbuffer = (char *) calloc(l, sizeof(char));
 		for(i = 0; i < l; i++)
-		{	
+		{
 			int xor = input[i] ^ key[k];
-			if(xor <= 0xF) 
-				printf("0");
-			printf("%x", xor); 
+			rawbuffer[j++] = (char) xor;
 			k = (k + 1) % kl;
 		}
-		printf("\n");
+		printf("rawtohex: %s\n", rawtohex(rawbuffer, l));
+		printf("rawtobase64: %s\n", rawtobase64(rawbuffer, l));
 	}
 	else
 	{

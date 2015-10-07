@@ -1,4 +1,4 @@
-objects = s1c5.o 
+objects = s1c5.o helpers.o
 
 s1c5.out: $(objects)
 	gcc -o s1c5.out $(objects)
@@ -6,5 +6,8 @@ s1c5.out: $(objects)
 s1c5.o: s1c5.c
 	gcc -c s1c5.c
 
+helpers.o: helpers.c
+	gcc -c helpers.c
+
 clean:
-	rm s1c5.out s1c5.o
+	rm s1c5.out s1c5.o helpers.o

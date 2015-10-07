@@ -1,4 +1,4 @@
-objects = s1c6.o hamming.o
+objects = s1c6.o hamming.o singlebytexorcipher.o helpers.o
 
 s1c6.out: $(objects)
 	gcc -o s1c6.out $(objects)
@@ -8,6 +8,12 @@ s1c6.o: s1c6.c
 
 hamming.o: hamming.c
 	gcc -c hamming.c
+
+singlebytexorcipher.o: singlebytexorcipher.c
+	gcc -c singlebytexorcipher.c
+
+helpers.o: helpers.c
+	gcc -c helpers.c
 
 clean:
 	rm s1c6.out s1c6.o hamming.o
