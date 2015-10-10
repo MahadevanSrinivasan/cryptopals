@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <openssl/evp.h>
 #include <openssl/ssl.h>
 #include <openssl/rsa.h>
@@ -54,18 +55,41 @@ int do_crypt(FILE *in, FILE *out, int do_encrypt)
 
 int main(int argc, char *argv[])
 {
-	FILE *fin = fopen(argv[1], "r");
-	char buffer[100];
-	fgets(buffer, 100, fin);
-	while(fgets(&buffer[strlen(buffer)-1], 100, fin));
-	buffer[strlen(buffer)-1] = '\0';
-	char *rawbuffer = base64toraw(buffer);
-	FILE *fout = fopen(argv[2], "w");
-	int i = 0;
-	for(i = 0; i < strlen(buffer)*3/4; i++)
-		fout.
+	if(argc == 3)
+	{
+		FILE *fin = fopen(argv[1], "r");
+		char buffer[100*60];
+		fgets(buffer, 100, fin);
+		while(fgets(&buffer[strlen(buffer)-1], 100, fin));
+		buffer[strlen(buffer)-1] = '\0';
+		char *rawbuffer = base64toraw(buffer);
+		FILE *fout = fopen("temp.bin", "wb");
+		int i = 0;
+		fwrite(rawbuffer, sizeof(char), strlen(buffer)*3/4, fout);
+		fclose(fout);
+		fclose(fin);
 
+		fin = fopen("temp.bin", "rb");
+		fout = fopen(argv[2], "w");
+		if(do_crypt(fin, fout, 0)) {
+			fclose(fin);
+			fclose(fout);
+			fin = fopen(argv[2], "r");
+			char tempbuffer[100];
+			while(fgets(&tempbuffer[0], 100, fin))
+				printf("%s", tempbuffer);
+		}
+		else {
+			printf("Something went wrong, decrypt failed\n");
+			fclose(fout);
+		}
 
-	printf("Docrypt = %d\n", do_crypt(fin, fout, 0));
+		fclose(fin);
+	}
+	else {
+		printf("Usage: ./s1c7.out input.txt output.txt\n");
+	}
+
 	return 0;
 }
+

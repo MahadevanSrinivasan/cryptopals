@@ -1,0 +1,13 @@
+objects = s1c7.o helpers.o
+
+s1c7.out: $(objects)
+	gcc -o s1c7.out $(objects)  -lssl -lcrypto
+
+s1c7.o: s1c7.c
+	gcc -c s1c7.c
+
+helpers.o: helpers.c
+	gcc -c helpers.c
+
+clean:
+	rm s1c7.out s1c7.o 
